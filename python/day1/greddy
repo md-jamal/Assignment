@@ -1,0 +1,30 @@
+#Greddy Alogrithem Implementation
+#Author :: Pritam Krishna Mali
+#Date :: 06 March 2017
+
+def greddy(w=20, x=10, y=2, z=1 ):
+    a, b, c, d = 0,0,0,0
+    rs = int(input("Enter the Amount"))
+    if rs > 0:
+        a = rs / w
+        rs %= w
+
+    if rs > 0 and rs >= x:
+        b = rs /x
+        rs %= x
+
+    if rs > 0 and rs >= y:
+        c = rs / y
+        rs %= y
+
+    if rs > 0 and rs >= z:
+        d = rs / z
+        rs %= z
+
+    print w ," ",a
+    print x ," ",b
+    print y ," ",c
+    print z ," ",d
+
+
+greddy(10,5,2,1)

@@ -1,0 +1,1 @@
+cmd_/home/pritam/Training/LINUX/MM/page_walk/kmod.ko := ld -r -m elf_i386 -T ../scripts/module-common.lds --build-id  -o /home/pritam/Training/LINUX/MM/page_walk/kmod.ko /home/pritam/Training/LINUX/MM/page_walk/kmod.o /home/pritam/Training/LINUX/MM/page_walk/kmod.mod.o ;  true

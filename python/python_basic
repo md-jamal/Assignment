@@ -1,0 +1,13 @@
+class Vehical :
+    def __init__(self, speed, number, color):
+        self.spped
+        self.number
+        self.color
+     def start(self):
+            print "Starting"
+
+     def stop(self):
+        print "Stopping"
+
+     def accelerate(self)
+        print ""

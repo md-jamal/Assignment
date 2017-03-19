@@ -1,0 +1,1 @@
+cmd_/home/pritam/Training/C_Experiment/modules/hello-1.ko := ld -r -m elf_i386 -T ./scripts/module-common.lds --build-id  -o /home/pritam/Training/C_Experiment/modules/hello-1.ko /home/pritam/Training/C_Experiment/modules/hello-1.o /home/pritam/Training/C_Experiment/modules/hello-1.mod.o ;  true

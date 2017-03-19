@@ -1,0 +1,1 @@
+cmd_/home/pritam/Training/C_Experiment/linux/mm/pgdump/pgdump.ko := ld -r -m elf_i386 -T ../scripts/module-common.lds --build-id  -o /home/pritam/Training/C_Experiment/linux/mm/pgdump/pgdump.ko /home/pritam/Training/C_Experiment/linux/mm/pgdump/pgdump.o /home/pritam/Training/C_Experiment/linux/mm/pgdump/pgdump.mod.o ;  true

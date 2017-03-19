@@ -1,0 +1,9 @@
+#include"cdlist.h"
+
+/*To insert node in Double linked List*/
+
+CDLIST *insert_node(CDLIST *head, CDLIST *end)
+{
+	CDLIST *new_node = createnode();		/*To create New Node*/
+
+}

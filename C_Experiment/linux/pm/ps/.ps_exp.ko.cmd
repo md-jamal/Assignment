@@ -1,0 +1,1 @@
+cmd_/home/sagar/Training/linux/pm/ps/ps_exp.ko := ld -r -m elf_i386 -T ../scripts/module-common.lds --build-id  -o /home/sagar/Training/linux/pm/ps/ps_exp.ko /home/sagar/Training/linux/pm/ps/ps_exp.o /home/sagar/Training/linux/pm/ps/ps_exp.mod.o

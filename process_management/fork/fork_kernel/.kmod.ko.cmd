@@ -1,0 +1,1 @@
+cmd_/home/sandeep/training/os/process_management/fork_kernel/kmod.ko := ld -r -m elf_i386 -T ../scripts/module-common.lds --build-id  -o /home/sandeep/training/os/process_management/fork_kernel/kmod.ko /home/sandeep/training/os/process_management/fork_kernel/kmod.o /home/sandeep/training/os/process_management/fork_kernel/kmod.mod.o ;  true

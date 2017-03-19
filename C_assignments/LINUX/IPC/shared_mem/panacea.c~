@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/mman.h>
+#include <sys/stat.h>        /* For mode constants */
+#include <fcntl.h>           /* For O_* constants */
+#include <sys/mman.h>
+#include <sys/wait.h>
+
+/*Macro*/
+#define SHM_SIZE 512
+#define SHM_NAME "shm_mem"
+int main( void )
+{
+	int f_trunk;
+	const size_t region_size = sysconf(_SC_PAGE_SIZE);
+	int count = 0, value = 0;
+	
+	int fd = shm_open(SHM_NAME, O_CREAT | O_TRUNC | O_RDWR, 0666);
+
+	if(fd == -1){
+		printf("\nshm_open:failed");
+		exit(EXIT_FAILURE);
+	}
+	
+	f_trunk =ftruncate(fd, region_size);
+
+	if (f_trunk != 0){
+		printf("\nftuncate:failed");
+		exit(EXIT_FAILURE);
+	}
+	
+	int *ptr = (int *)mmap(0, region_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+	if(ptr == MAP_FAILED)
+	{
+		printf("\nmmap:Failed");
+		exit(EXIT_FAILURE);	
+	}	
+	
+	memset(ptr, 0, region_size);
+	while(count < 5)
+	{
+		printf("\nEnter The Value:");
+		scanf("%d",&value);
+		
+		value = time(NULL) % value;
+
+		memcpy(ptr, &value, sizeof(int));
+		count++;
+	}
+
+	if(munmap(ptr, region_size) != 0 )
+		printf("\nmunmap:failed");
+
+	if(shm_unlink(SHM_NAME) != 0)
+		printf("shm_unlink:failed");	
+	
+	return 0;
+}
+
+

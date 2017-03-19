@@ -1,0 +1,23 @@
+# Program to count number of character occurence in string
+#Author :: Pritam Krishna Mali
+#Date :: 6 march 2017
+
+def char_count(sr):
+    array_count = [0 for x in range(26)]
+    for i in array_count:
+        array_count[i] = 0
+    for ch in sr:
+        if ord(ch) >= 97 and ord(ch) <= 122:
+            i = ord(ch) - ord('a')
+            array_count[i]+=1
+        else:
+            if ord(ch) >= 65 and ord(ch) <= 92:
+                i = ord(ch) - ord('A')
+                array_count[i] += 1
+    for k, i in enumerate(array_count):
+        if array_count[k] != 0:
+            print str(unichr(65 + k)), i
+
+char_count("DKTEEEEEEE")
+
+

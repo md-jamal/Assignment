@@ -1,0 +1,1 @@
+cmd_/home/pritam/Training/C_assessment/lsmod/lsmod.ko := ld -r -m elf_i386 -T ../scripts/module-common.lds --build-id  -o /home/pritam/Training/C_assessment/lsmod/lsmod.ko /home/pritam/Training/C_assessment/lsmod/lsmod.o /home/pritam/Training/C_assessment/lsmod/lsmod.mod.o ;  true

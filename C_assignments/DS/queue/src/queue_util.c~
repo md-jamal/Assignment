@@ -1,0 +1,40 @@
+#include"que.h"
+
+int main()
+{
+
+	int option;
+	int data;
+	char *_data = NULL;
+
+	if(NULL == (_data = (char *)malloc(sizeof(char) * MAX)))
+		printf("\nMalloc Failed");
+	else{
+		while(1)
+		{
+			option = opt();
+		
+			if(option >=4)
+				break;
+			switch(option)
+			{
+				case 1:
+					getchar();
+					printf("Enter the Data");
+					fgets(_data , MAX , stdin);
+					printf("%d",rear);
+					enqueue(atoi(_data)); 
+					break;
+				case 2:
+					printf("%d",front);
+					dequeue();
+					break;
+				case 3:
+					display();
+					break;
+				case 4:
+					exit(0);
+			}
+		}
+	}
+}

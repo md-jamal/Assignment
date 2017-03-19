@@ -1,0 +1,52 @@
+#include "file.h"
+/*
+	Function : search string.
+*/
+
+void search_string(char *file_nm , FILE *f1 , char *usr_str)
+{
+
+	char ch;
+	char *word = NULL;
+
+	int i = 0;
+	int line = 1;
+	int count = 0;
+	f1 = fopen(file_nm , "r");
+	
+	if(NULL == (word = (char *)malloc(sizeof(char) * MAX)))
+	{        
+		printf("\nMalloc Is failed");                                                                               
+	}  
+	
+	if(f1 == NULL)
+		printf("File Does Not Exists");
+	else
+	{
+			while((ch = getc(f1)) != EOF)
+			{
+				if(ch != ' ' && ch != '\n')
+				{
+					*(word + i++) = ch;
+				}
+				else
+				{
+						
+					*(word + i++) = '\0';
+					i = 0;
+		
+           			 	if(case_cmp(word , usr_str) == 0)
+					{
+              					 printf("\nString Found at line number %d\n",line);
+			
+					}
+							(ch == 10) ? line++ : line ;
+				}
+					
+			}
+	//	if(ch == EOF)
+	//		printf("String Is Not Found\n\n");	
+				
+	}	
+	free(word);
+}

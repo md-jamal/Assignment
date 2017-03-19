@@ -1,0 +1,122 @@
+#include "elf_header.h"
+
+int elf_section_header(ELF32_Eheader *ehdr)
+{
+	int i,index,j;
+	struct ELF32_Shdr *shdr;
+	char *buf1;	
+
+	shdr = (struct ELF32_Shdr *)malloc(sizeof(struct ELF32_Shdr));
+	fseek(fp, ( ehdr -> elf_shoff + (ehdr -> elf_shentsize * ehdr -> elf_shstrndx)), SEEK_SET);
+	fread(shdr, sizeof(struct ELF32_Shdr), 1, fp);
+
+	buf1 = (char *)malloc(sizeof(char) * shdr -> sh_size);
+
+	fseek(fp, shdr -> sh_offset , SEEK_SET);
+	fread(buf1, shdr -> sh_size, 1, fp);		
+
+	fseek(fp, ehdr -> elf_shoff, SEEK_SET);
+	
+	printf("\nSection Header\n\n[Nr]  Nam\t\t\t\t Type\t\t\t  Addr\t    Off\t   Size\t  ES\tFlag\tLk\tInf\tAl\n");
+	for( i = 0; i < ehdr -> elf_shnum; i++) {
+		fread(shdr, sizeof(struct ELF32_Shdr), 1, fp); 
+		printf("[%02d]  ", i);
+	
+		index = ( unsigned int )shdr -> sh_name;
+		j = index;
+		while(buf1[j] != '\0') {
+			printf("%c", buf1[j]);
+			j++;
+		}
+		if(i == 7 || i == 9)
+			printf("\t\t");
+		else
+			printf("\t\t\t");
+		switch( shdr -> sh_type ) {
+			case 0 :
+					printf("\t\tNULL\t"); 
+					break;
+			case 1 :printf("\tPROGBITS");
+					break;
+			case 2 :
+					printf("\tSYSTAB\t");
+					break;
+			case 3 :
+					printf("\tSTRTAB\t");
+					break;
+			case 4 :
+					printf("\tRELA\t");
+					break;
+			case 5 :	
+					printf("\tHASH\t");
+					break;
+			case 6 :
+					printf("\tDYNAMIC");
+					break;
+			case 7 :
+					printf("\tNOTE\t");
+					break;
+			case 8 :
+					printf("\tNOBITS\t");
+					break;
+			case 9 :
+					printf("\tREL\t");
+					break;
+			case 10 :
+					printf("\tSHLIB");
+					break;
+			case 11 :
+					printf("\tDYNSYS");
+					break;
+			case 0x70000000 :
+					printf("\tLOPROC");
+					break;
+			case 0x7fffffff :
+					printf("\tHIPROC");
+					break;
+			case 0x80000000 :
+					printf("\tLOUSER");
+					break;
+			case 0xffffffff :
+					printf("\tHIUSER");
+					break;
+			default :
+					break;
+		}
+		printf("\t\t%08x  ", shdr -> sh_addr);
+		printf("%06x",shdr -> sh_offset);
+		printf("  %06x",shdr -> sh_size); 
+		printf("  %02d\t",shdr -> sh_entsize); 
+		if(!shdr -> sh_flags)
+			printf("\t");
+
+		else {
+			switch(shdr -> sh_flags) {
+				case 1 : printf("W\t");
+							break;
+				case 2 : printf("A\t");
+							break;
+				case 3 : printf("WA\t");
+							break;
+				case 4 : printf("X\t");
+							break;
+				case 5 : printf("M\t");
+							break;
+				case 6 : printf("AX\t");
+							break;
+				case 48 :
+						 printf("MS\t");
+							break;
+				default : 
+						printf("\t");
+						break;
+			}
+	}
+		printf("%d\t",shdr -> sh_link); 
+		printf("%d\t", shdr -> sh_info); 
+		printf("%d\n", shdr -> sh_addralign); 
+	}
+
+	proghdr_printf( fp, ehdr ); 
+	fclose(fp);
+}

@@ -1,0 +1,1 @@
+cmd_/home/pritam/Training/LINUX/dependancy/module2/kmod2.ko := ld -r -m elf_i386 -T ../scripts/module-common.lds --build-id  -o /home/pritam/Training/LINUX/dependancy/module2/kmod2.ko /home/pritam/Training/LINUX/dependancy/module2/kmod2.o /home/pritam/Training/LINUX/dependancy/module2/kmod2.mod.o ;  true

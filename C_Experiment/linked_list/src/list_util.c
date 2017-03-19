@@ -1,0 +1,134 @@
+/*
+	Programe : To Create New Linked List And To perform aoperation Insertion 
+			   And Deletion
+	Author : Pritam Krishna Mali.
+*/
+
+#include"list.h"
+
+int main()
+{
+	sll *head = NULL;   /*To hold Address OF First Node*/
+	int opt = 0;		/*To keep user selected Option*/	
+	int pos = 0;		/*position of node*/
+	int num = 0;		/*Take number which is present in list*/
+	char *_pos = NULL;
+	char *_num = NULL;
+	if(NULL == (_pos = (char *)malloc(sizeof(char) * MAX)))
+		printf("malloc Failed");
+	if(NULL == (_num = (char *)malloc(sizeof(char) * MAX)))                      
+        printf("malloc Failed"); 
+ 
+	while(1){
+		system("clear");
+		opt = menu();
+		if(opt >=22)
+			break;
+		switch(opt){
+			case 1:	
+				head =  add_begin(head);			   //Add Begin NODE
+				break;
+			case 2:
+				head = add_end(head);		    	   //Add End NODE
+				break;
+			case 3:	
+				getchar();
+				printf("Enter The Position");
+				fgets(_pos , MAX , stdin);
+				pos = atoi(_pos);		
+				head = insert_n_pos(head , pos);	   //Insert nts position
+				break;
+			case 4:
+				getchar();
+				printf("Enter The Position");
+				fgets(_pos , MAX , stdin);
+				pos = atoi(_pos);		
+				head = insert_befor_n_pos(head , pos); //Insert Node Before N pos
+				break;
+			case 5:
+				getchar();
+				printf("Enter The Position");
+				fgets(_pos , MAX , stdin);
+				pos = atoi(_pos);                                               
+                head = insert_after_n_pos(head , pos); //Insert Node After N Pos                         
+                break;
+			case 6:
+			 	getchar();
+				printf("Enter The Number");
+				fgets(_num , MAX , stdin);
+				num = atoi(_num);                                               
+                		head = add_end_file(head,num);                         
+                break;
+			case 7:
+				getchar();                                                      
+                printf("Enter The Position");                                   
+                fgets(_num , MAX , stdin);                                      
+                num = atoi(_num);                                         
+                head = insert_after_num_pos(head , num); //Insert After Num pos                       
+                break;
+			case 8:
+				 head = insert_middle(head);             //Insert At Middle           
+                 break;
+			case 9:
+				head = penultinate_node(head);           //Insert Penultinate Node
+				break;
+			case 10:
+				head = delete_begin(head);				//Delete Begin Node
+				break;
+			case 11:
+				head = delete_end(head);				//Delete End Node
+				break;
+			case 12:
+				getchar();                                                      
+                printf("Enter The Position");                                   
+                fgets(_pos , MAX , stdin);                                      
+                pos = atoi(_pos);
+				head = delete_n_pos(head , pos);		//delete n position Node
+				break;
+			case 13:
+				getchar();                                                      
+                printf("Enter The Position");                                   
+                fgets(_pos , MAX , stdin);                                      
+                pos = atoi(_pos);                                               
+                head = delete_befor_n_pos(head ,--pos);       //delete Before n position Node
+                break;
+			case 14:
+				getchar();                                                      
+                printf("Enter The Position");                                   
+                fgets(_pos , MAX , stdin);                                      
+                pos = atoi(_pos);                                               
+                head = delete_after_n_pos(head ,pos);       //delete after n position Node
+                break;
+			case 15:
+				getchar();                                                      
+                printf("Enter The Number");                                   
+                fgets(_num , MAX , stdin);                                      
+                num = atoi(_num);                                               
+                head = delete_befor_num_pos(head , num); //Delete Befor Num Pos                          
+                break;
+			case 16:
+				getchar();                                                      
+                printf("Enter The Number");                                   
+                fgets(_num , MAX , stdin);                                      
+                num = atoi(_num);                                               
+                head = delete_after_num_pos(head , num); //Delete After Num Pos                          
+                break; 
+			case 17:
+				head = delete_at_middle(head); 			//delete At Middle    
+				break;
+			case 18:
+				head = delete_penultinate_node(head);  
+				break;
+			case 19:
+				write_list_file(head);					//Write list to File
+				break;
+			case 20:
+				head = read_list_file(head);			//Read list From File
+				break;                             
+			case 21:
+				display_list(head);						//Display list
+				break;
+		}  
+	}
+	return 0;
+}

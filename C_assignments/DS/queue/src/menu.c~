@@ -1,0 +1,11 @@
+#include"que.h"
+/*Show Menu*/
+int opt()
+{
+	int opt_ch = 0;
+	printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\n..Choose Option:");
+	scanf("%d",&opt_ch);
+	printf("\n");
+	
+	return opt_ch;
+}
